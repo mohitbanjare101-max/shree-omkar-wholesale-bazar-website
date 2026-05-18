@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>श्री ओमकार होलसेल बाजार</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9962A;
+      --gold-light: #F2D472;
+      --gold-dark: #8B6410;
+      --maroon: #6B1A2A;
+      --maroon-dark: #3D0A14;
+      --maroon-light: #9C2B3E;
+      --cream: #FAF5E9;
+      --cream-dark: #EDE4CE;
+      --text-dark: #1C0D08;
+      --text-mid: #4A2C1A;
+      --text-light: #8B6B50;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--maroon-dark);
+      border-bottom: 2px solid var(--gold);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Noto Sans Devanagari', sans-serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+    .nav-logo span { display: block; font-size: 0.72rem; color: var(--cream-dark); font-weight: 400; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--cream-dark);
+      font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-badge {
+      background: var(--gold); color: var(--maroon-dark);
+      font-size: 0.72rem; font-weight: 700; padding: 4px 12px;
+      border-radius: 2px; letter-spacing: 0.08em;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--maroon-dark) 0%, var(--maroon) 55%, #8B2535 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 2rem 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-pattern {
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(201,150,42,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(201,150,42,0.06) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .hero-border {
+      position: absolute; inset: 20px;
+      border: 1px solid rgba(201,150,42,0.25);
+      pointer-events: none;
+    }
+    .hero-corner {
+      position: absolute; width: 60px; height: 60px;
+      border-color: var(--gold);
+      border-style: solid; border-width: 0;
+    }
+    .hero-corner.tl { top: 20px; left: 20px; border-top-width: 2px; border-left-width: 2px; }
+    .hero-corner.tr { top: 20px; right: 20px; border-top-width: 2px; border-right-width: 2px; }
+    .hero-corner.bl { bottom: 20px; left: 20px; border-bottom-width: 2px; border-left-width: 2px; }
+    .hero-corner.br { bottom: 20px; right: 20px; border-bottom-width: 2px; border-right-width: 2px; }
+    .hero-divider {
+      width: 200px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 1.2rem auto;
+    }
+    .hero-om {
+      font-size: 3.5rem; color: var(--gold); line-height: 1;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 30px rgba(201,150,42,0.4);
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 20px rgba(201,150,42,0.3); }
+      to   { text-shadow: 0 0 50px rgba(201,150,42,0.7); }
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800; color: var(--cream);
+      line-height: 1.15; margin-bottom: 0.3rem;
+    }
+    .hero-title .highlight { color: var(--gold-light); }
+    .hero-subtitle {
+      font-size: 1.1rem; color: var(--cream-dark);
+      font-weight: 400; letter-spacing: 0.12em;
+      margin-bottom: 1rem; opacity: 0.85;
+    }
+    .hero-tagline {
+      font-size: 1rem; color: var(--gold-light);
+      font-style: italic; font-family: 'Crimson Pro', serif;
+      margin-bottom: 2rem;
+    }
+    .hero-cta {
+      display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--maroon-dark);
+      padding: 14px 36px; font-size: 0.95rem; font-weight: 700;
+      text-decoration: none; border-radius: 2px;
+      letter-spacing: 0.06em; transition: all 0.2s;
+      font-family: 'Noto Sans Devanagari', sans-serif;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline {
+      border: 1.5px solid var(--gold); color: var(--gold-light);
+      padding: 13px 36px; font-size: 0.95rem; font-weight: 600;
+      text-decoration: none; border-radius: 2px;
+      letter-spacing: 0.06em; transition: all 0.2s;
+      font-family: 'Noto Sans Devanagari', sans-serif;
+    }
+    .btn-outline:hover { background: rgba(201,150,42,0.1); }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 3rem;
+      margin-top: 3.5rem; padding-top: 2.5rem;
+      border-top: 1px solid rgba(201,150,42,0.2);
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 2rem; font-weight: 800; color: var(--gold-light); line-height: 1; }
+    .stat-label { font-size: 0.78rem; color: var(--cream-dark); letter-spacing: 0.08em; margin-top: 4px; }
+
+    /* ── SECTIONS COMMON ── */
+    section { padding: 80px 2rem; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-tag {
+      display: inline-block; background: var(--maroon);
+      color: var(--gold-light); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.14em; padding: 5px 16px; border-radius: 2px;
+      margin-bottom: 1rem; text-transform: uppercase;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800; color: var(--maroon-dark); line-height: 1.2;
+    }
+    .section-line {
+      width: 60px; height: 3px; background: var(--gold);
+      margin: 1rem auto 0; border-radius: 2px;
+    }
+
+    /* ── NOTICE BANNER ── */
+    .notice-banner {
+      background: var(--maroon-dark);
+      color: var(--cream); text-align: center;
+      padding: 14px 2rem;
+      font-size: 0.9rem; font-weight: 500;
+      border-bottom: 1px solid var(--gold-dark);
+      margin-top: 64px;
+    }
+    .notice-banner strong { color: var(--gold-light); }
+
+    /* ── PRODUCTS ── */
+    #products { background: var(--cream); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem; max-width: 1100px; margin: 0 auto;
+    }
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--cream-dark);
+      border-radius: 4px; overflow: hidden;
+      transition: all 0.25s; cursor: default;
+    }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(107,26,42,0.12); border-color: var(--gold); }
+    .product-icon-wrap {
+      height: 120px; display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+    }
+    .product-info { padding: 1rem; border-top: 1px solid var(--cream-dark); }
+    .product-name { font-size: 0.95rem; font-weight: 700; color: var(--maroon-dark); margin-bottom: 4px; }
+    .product-desc { font-size: 0.78rem; color: var(--text-light); line-height: 1.5; }
+    .p1 { background: #FFF8E7; }
+    .p2 { background: #FFF0F3; }
+    .p3 { background: #F0FFF4; }
+    .p4 { background: #EFF6FF; }
+    .p5 { background: #FFF4EC; }
+    .p6 { background: #F5F0FF; }
+    .p7 { background: #FFFBF0; }
+    .p8 { background: #F0FFFE; }
+
+    /* ── WHY US ── */
+    #why { background: var(--maroon-dark); }
+    #why .section-title { color: var(--cream); }
+    #why .section-tag { background: rgba(201,150,42,0.2); color: var(--gold-light); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,150,42,0.2);
+      border-radius: 4px; padding: 1.8rem 1.5rem; text-align: center;
+      transition: border-color 0.2s;
+    }
+    .why-card:hover { border-color: var(--gold); }
+    .why-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .why-title { font-size: 1rem; font-weight: 700; color: var(--gold-light); margin-bottom: 0.5rem; }
+    .why-desc { font-size: 0.82rem; color: rgba(250,245,233,0.7); line-height: 1.6; }
+
+    /* ── FIXED PRICE SECTION ── */
+    .fixedprice {
+      background: var(--cream-dark);
+      padding: 60px 2rem; text-align: center;
+    }
+    .fixedprice-box {
+      max-width: 680px; margin: 0 auto;
+      background: var(--white);
+      border: 2px solid var(--gold);
+      border-radius: 6px; padding: 2.5rem 2rem;
+      position: relative;
+    }
+    .fixedprice-box::before {
+      content: '';
+      position: absolute; inset: 5px;
+      border: 1px solid rgba(201,150,42,0.25);
+      border-radius: 4px; pointer-events: none;
+    }
+    .fixedprice-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .fixedprice-title { font-size: 1.8rem; font-weight: 800; color: var(--maroon-dark); margin-bottom: 0.6rem; }
+    .fixedprice-subtitle { font-size: 1rem; color: var(--text-mid); line-height: 1.7; }
+    .fixedprice-subtitle strong { color: var(--maroon); }
+    .fixedprice-stamp {
+      display: inline-block; margin-top: 1.5rem;
+      border: 2.5px solid var(--maroon);
+      color: var(--maroon); font-size: 0.85rem;
+      font-weight: 800; letter-spacing: 0.15em;
+      padding: 8px 24px; border-radius: 2px;
+      transform: rotate(-2deg);
+    }
+
+    /* ── GALLERY placeholder ── */
+    #gallery { background: var(--cream); }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem; max-width: 1000px; margin: 0 auto;
+    }
+    .gallery-tile {
+      border-radius: 4px; height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; border: 1px solid var(--cream-dark);
+      transition: transform 0.2s;
+    }
+    .gallery-tile:hover { transform: scale(1.03); }
+    .gt1 { background: #FBE8D3; }
+    .gt2 { background: #D3EBE0; }
+    .gt3 { background: #D5E0F5; }
+    .gt4 { background: #F5D5E0; }
+    .gt5 { background: #EDE0F5; }
+    .gt6 { background: #F5EDD0; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--maroon-dark); }
+    #contact .section-title { color: var(--cream); }
+    #contact .section-tag { background: rgba(201,150,42,0.2); color: var(--gold-light); }
+    .contact-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; max-width: 900px; margin: 0 auto;
+    }
+    @media (max-width: 640px) { .contact-wrap { grid-template-columns: 1fr; } }
+    .contact-info { color: var(--cream-dark); }
+    .contact-info h3 { font-size: 1.1rem; color: var(--gold-light); font-weight: 700; margin-bottom: 1.2rem; }
+    .contact-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 1rem; }
+    .contact-item-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .contact-item-text { font-size: 0.88rem; line-height: 1.6; color: var(--cream-dark); }
+    .contact-item-text strong { color: var(--gold-light); display: block; font-size: 0.78rem; letter-spacing: 0.06em; margin-bottom: 2px; }
+    .timing-grid { display: grid; gap: 8px; }
+    .timing-row {
+      display: flex; justify-content: space-between;
+      font-size: 0.84rem; color: var(--cream-dark);
+      padding: 8px 14px; background: rgba(255,255,255,0.05);
+      border-radius: 3px; border: 1px solid rgba(201,150,42,0.15);
+    }
+    .timing-row span:last-child { color: var(--gold-light); font-weight: 600; }
+
+    /* ── MAP PLACEHOLDER ── */
+    .map-placeholder {
+      border: 1px solid rgba(201,150,42,0.3); border-radius: 4px;
+      background: rgba(255,255,255,0.04);
+      padding: 2rem; text-align: center; color: var(--cream-dark);
+      font-size: 0.85rem;
+    }
+    .map-placeholder .map-icon { font-size: 3rem; display: block; margin-bottom: 0.8rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1A0509; color: rgba(250,245,233,0.5);
+      text-align: center; padding: 2rem;
+      font-size: 0.8rem; border-top: 1px solid rgba(201,150,42,0.2);
+    }
+    footer strong { color: var(--gold-light); }
+
+    /* ── SCROLL UP BTN ── */
+    .scroll-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--gold); color: var(--maroon-dark);
+      border: none; width: 44px; height: 44px; border-radius: 4px;
+      font-size: 1.2rem; cursor: pointer; z-index: 99;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      transition: all 0.2s;
+    }
+    .scroll-top:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .hero-stats { gap: 1.5rem; }
+      nav { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">
+    श्री ओमकार होलसेल बाजार
+    <span>WHOLESALE CLOTH MARKET • SINCE YEARS</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#products">कपड़े</a></li>
+    <li><a href="#why">हमारे बारे में</a></li>
+    <li><a href="#gallery">गैलरी</a></li>
+    <li><a href="#contact">संपर्क</a></li>
+  </ul>
+  <span class="nav-badge">FIXED RATE</span>
+</nav>
+
+<!-- NOTICE BANNER -->
+<div class="notice-banner">
+  🏷️ हमारी दुकान <strong>फिक्स रेट</strong> पर चलती है — कोई मोलभाव नहीं, कोई ऑफर नहीं। <strong>सही दाम, असली माल।</strong>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-border"></div>
+  <div class="hero-corner tl"></div>
+  <div class="hero-corner tr"></div>
+  <div class="hero-corner bl"></div>
+  <div class="hero-corner br"></div>
+  <div style="position:relative; z-index:1;">
+    <div class="hero-om">ॐ</div>
+    <h1 class="hero-title">
+      श्री <span class="highlight">ओमकार</span><br />होलसेल बाजार
+    </h1>
+    <p class="hero-subtitle">WHOLESALE CLOTH MARKET</p>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">"हर कपड़े में गुणवत्ता, हर रेट में ईमानदारी"</p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-primary">हमारे कपड़े देखें</a>
+      <a href="#contact" class="btn-outline">संपर्क करें</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">VARIETY OF FABRIC</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">थोक</div>
+        <div class="stat-label">WHOLESALE RATES</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">GENUINE QUALITY</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Fixed</div>
+        <div class="stat-label">RATE — NO BARGAIN</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-header">
+    <span class="section-tag">हमारा संग्रह</span>
+    <h2 class="section-title">सभी प्रकार के कपड़े</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="products-grid">
+    <div class="product-card p1">
+      <div class="product-icon-wrap">🥻</div>
+      <div class="product-info">
+        <div class="product-name">साड़ी</div>
+        <div class="product-desc">सिल्क, कॉटन, जॉर्जेट, नेट — सभी प्रकार उपलब्ध</div>
+      </div>
+    </div>
+    <div class="product-card p2">
+      <div class="product-icon-wrap">👔</div>
+      <div class="product-info">
+        <div class="product-name">शर्टिंग कपड़ा</div>
+        <div class="product-desc">कॉटन, टेरीकॉट, रेमी, लिनन शर्टिंग</div>
+      </div>
+    </div>
+    <div class="product-card p3">
+      <div class="product-icon-wrap">👖</div>
+      <div class="product-info">
+        <div class="product-name">सूटिंग कपड़ा</div>
+        <div class="product-desc">ऊन, पॉलेस्टर, ब्लेंड सूटिंग थान</div>
+      </div>
+    </div>
+    <div class="product-card p4">
+      <div class="product-icon-wrap">🧣</div>
+      <div class="product-info">
+        <div class="product-name">दुपट्टा & चुनरी</div>
+        <div class="product-desc">चिकन, बाटिक, प्रिंटेड दुपट्टे</div>
+      </div>
+    </div>
+    <div class="product-card p5">
+      <div class="product-icon-wrap">🧵</div>
+      <div class="product-info">
+        <div class="product-name">लहंगा कपड़ा</div>
+        <div class="product-desc">ब्रोकेड, वेलवेट, जरी वर्क फैब्रिक</div>
+      </div>
+    </div>
+    <div class="product-card p6">
+      <div class="product-icon-wrap">🏠</div>
+      <div class="product-info">
+        <div class="product-name">होम फैब्रिक</div>
+        <div class="product-desc">पर्दे, बेडशीट, तकिया कवर कपड़ा</div>
+      </div>
+    </div>
+    <div class="product-card p7">
+      <div class="product-icon-wrap">👗</div>
+      <div class="product-info">
+        <div class="product-name">कुर्ती कपड़ा</div>
+        <div class="product-desc">राइन, चंदेरी, मलमल, खादी</div>
+      </div>
+    </div>
+    <div class="product-card p8">
+      <div class="product-icon-wrap">🧶</div>
+      <div class="product-info">
+        <div class="product-name">थान कपड़ा</div>
+        <div class="product-desc">प्लेन, प्रिंटेड, एम्ब्रॉयडरी थान</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIXED PRICE HIGHLIGHT -->
+<div class="fixedprice">
+  <div class="fixedprice-box">
+    <div class="fixedprice-icon">🏷️</div>
+    <div class="fixedprice-title">फिक्स रेट — हमारी नीति</div>
+    <p class="fixedprice-subtitle">
+      श्री ओमकार होलसेल बाजार में <strong>कोई मोलभाव नहीं होता</strong>।<br />
+      हम हर ग्राहक को एक समान और <strong>न्यायसंगत मूल्य</strong> पर उत्कृष्ट गुणवत्ता का कपड़ा देते हैं।<br />
+      यहाँ कोई सेल नहीं, कोई ऑफर नहीं — <strong>सिर्फ सही दाम और असली माल।</strong>
+    </p>
+    <div class="fixedprice-stamp">FIXED RATE — NO BARGAIN</div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-header">
+    <span class="section-tag">हमें क्यों चुनें</span>
+    <h2 class="section-title">हमारी विशेषताएँ</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🏆</div>
+      <div class="why-title">उच्च गुणवत्ता</div>
+      <div class="why-desc">हर कपड़ा चुनी हुई मिलों से सीधे मँगाया जाता है — कोई मिलावट नहीं।</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚖️</div>
+      <div class="why-title">फिक्स रेट</div>
+      <div class="why-desc">सभी ग्राहकों के लिए एक ही कीमत — पारदर्शी और न्यायसंगत।</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📦</div>
+      <div class="why-title">होलसेल सप्लाई</div>
+      <div class="why-desc">थोक दाम पर बड़ी मात्रा में खरीदी — दुकानदारों व बुटीक के लिए उचित।</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎨</div>
+      <div class="why-title">विशाल विविधता</div>
+      <div class="why-desc">500 से अधिक प्रकार के कपड़े — एक ही छत के नीचे सब कुछ।</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <div class="why-title">विश्वसनीयता</div>
+      <div class="why-desc">वर्षों से ग्राहकों का विश्वास जीता — हमारी साख हमारी पहचान।</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🚀</div>
+      <div class="why-title">त्वरित सेवा</div>
+      <div class="why-desc">बड़े ऑर्डर पर भी त्वरित पैकेजिंग व वितरण की सुविधा।</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-header">
+    <span class="section-tag">हमारा स्टोर</span>
+    <h2 class="section-title">कपड़ों की झलक</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="gallery-grid" style="max-width:900px; margin: 0 auto;">
+    <div class="gallery-tile gt1">🥻</div>
+    <div class="gallery-tile gt2">🧵</div>
+    <div class="gallery-tile gt3">👔</div>
+    <div class="gallery-tile gt4">👗</div>
+    <div class="gallery-tile gt5">🧣</div>
+    <div class="gallery-tile gt6">🏠</div>
+  </div>
+  <p style="text-align:center; margin-top:1.5rem; color:var(--text-light); font-size:0.85rem;">
+    ऊपर दी गई तस्वीरें placeholder हैं — अपनी वास्तविक दुकान की फोटो यहाँ लगाएँ।
+  </p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-tag">हमसे मिलें</span>
+    <h2 class="section-title">संपर्क करें</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <h3>📍 दुकान का पता</h3>
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div class="contact-item-text">
+          <strong>पता</strong>
+          श्री ओमकार होलसेल बाजार,<br />
+          [पूरा पता यहाँ डालें],<br />
+          [शहर, राज्य — पिन कोड]
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div class="contact-item-text">
+          <strong>फोन</strong>
+          +91 XXXXX XXXXX<br />+91 XXXXX XXXXX
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📱</div>
+        <div class="contact-item-text">
+          <strong>WhatsApp</strong>
+          +91 XXXXX XXXXX
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div class="contact-item-text">
+          <strong>ईमेल</strong>
+          omkarwholesale@gmail.com
+        </div>
+      </div>
+      <div class="map-placeholder" style="margin-top:1.5rem;">
+        <span class="map-icon">🗺️</span>
+        यहाँ Google Maps लिंक या Embed लगाएँ<br />
+        <a href="https://maps.google.com" target="_blank" style="color:var(--gold-light); font-size:0.82rem;">Google Maps पर देखें →</a>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:1.1rem; color: var(--gold-light); font-weight:700; margin-bottom:1.2rem;">⏰ दुकान का समय</h3>
+      <div class="timing-grid">
+        <div class="timing-row"><span>सोमवार – शनिवार</span><span>सुबह 9:00 – शाम 8:00</span></div>
+        <div class="timing-row"><span>रविवार</span><span>सुबह 10:00 – शाम 6:00</span></div>
+        <div class="timing-row"><span>त्यौहार के दिन</span><span>विशेष समय</span></div>
+      </div>
+      <div style="margin-top:2rem; padding:1.5rem; background:rgba(201,150,42,0.1); border:1px solid rgba(201,150,42,0.3); border-radius:4px;">
+        <p style="color:var(--gold-light); font-size:0.88rem; font-weight:700; margin-bottom:0.5rem;">🏷️ याद रखें</p>
+        <p style="color:var(--cream-dark); font-size:0.82rem; line-height:1.7;">
+          हमारी दुकान पूरी तरह <strong style="color:var(--gold-light);">फिक्स रेट</strong> पर चलती है।
+          कोई मोलभाव, कोई ऑफर, कोई सेल नहीं। बस <strong style="color:var(--gold-light);">सही दाम और असली माल।</strong>
+        </p>
+      </div>
+      <div style="margin-top:1.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="tel:+91XXXXXXXXXX" class="btn-primary" style="flex:1; text-align:center;">📞 कॉल करें</a>
+        <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="btn-outline" style="flex:1; text-align:center;">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-size:1rem; font-weight:700; color:var(--gold-light); margin-bottom:0.4rem;">ॐ श्री ओमकार होलसेल बाजार ॐ</p>
+  <p>सभी प्रकार के कपड़े — होलसेल रेट पर। <strong>फिक्स रेट | No Bargain | No Offers</strong></p>
+  <p style="margin-top:0.8rem; font-size:0.75rem; opacity:0.5;">© 2024 श्री ओमकार होलसेल बाजार। सर्वाधिकार सुरक्षित।</p>
+</footer>
+
+<!-- SCROLL TOP -->
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="ऊपर जाएँ">▲</button>
+
+</body>
+</html>
